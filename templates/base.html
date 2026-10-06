@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>My Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            min-height: 100vh;
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .form-box {
+            width: 450px;
+            margin: auto;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .form-box h2 {
+            text-align: center;
+            color: #667eea;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 11px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 70px;
+            resize: none;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .profile-title {
+            text-align: center;
+            color: white;
+            margin-top: 35px;
+        }
+
+        .profile {
+            width: 500px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        /* Banner image */
+        .banner {
+            width: 100%;
+            height: 180px;
+            background-image: url("{{ data['banner'] }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Profile picture */
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            display: block;
+            margin: -65px auto 10px;
+            position: relative;
+        }
+
+        .profile-content {
+            padding: 10px 30px 30px;
+            text-align: center;
+        }
+
+        .profile-content h2 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .headline {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .bio {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .details p {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 7px;
+            background-color: #f5f3ff;
+        }
+
+        .details b {
+            color: #667eea;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1 class="title">🪸 Create Your Profile</h1>
+
+    <!-- FORM -->
+
+    <fieldset class="form-box">
+
+        <form method="POST">
+
+            <h2>Enter Your Data</h2>
+
+            <span>Profile URL:</span>
+            <input type="text" name="pic" placeholder="Enter Profile URL">
+            <br><br>
+
+            <span>Banner URL:</span>
+            <input type="text" name="banner" placeholder="Enter Banner URL">
+            <br><br>
+
+            <input type="text" name="name" placeholder="Enter Name">
+            <br><br>
+
+            <input type="text" name="headline" placeholder="Professional Headline">
+            <br><br>
+
+            <input type="email" name="email" placeholder="Enter Email">
+            <br><br>
+
+            <input type="text" name="location" placeholder="Enter Location">
+            <br><br>
+
+            <input type="text" name="skills" placeholder="Enter Skills">
+            <br><br>
+
+            <input type="text" name="experience" placeholder="Experience Level">
+            <br><br>
+
+            <textarea name="bio" placeholder="Enter Short Bio"></textarea>
+            <br><br>
+
+            <input type="date" name="joined_date">
+            <br><br>
+
+            <button type="submit">Create Profile</button>
+
+        </form>
+
+    </fieldset>
+
+
+    <!-- PROFILE -->
+
+    {% if data %}
+
+    <h1 class="profile-title">My Profile</h1>
+
+    <div class="profile">
+
+        <!-- Banner -->
+        <div class="banner"></div>
+
+        <!-- Profile Picture -->
+        <img class="profile-pic"
+             src="{{ data['pic'] }}"
+             alt="Profile Picture">
+
+        <div class="profile-content">
+
+            <h2>{{ data['name'] }}</h2>
+
+            <p class="headline">
+                {{ data['headline'] }}
+            </p>
+
+            <p class="bio">
+                {{ data['bio'] }}
+            </p>
+
+            <div class="details">
+
+                <p>
+                    <b>📧 Email:</b>
+                    {{ data['email'] }}
+                </p>
+
+                <p>
+                    <b>📍 Location:</b>
+                    {{ data['location'] }}
+                </p>
+
+                <p>
+                    <b>💻 Skills:</b>
+                    {{ data['skills'] }}
+                </p>
+
+                <p>
+                    <b>⭐ Experience Level:</b>
+                    {{ data['experience'] }}
+                </p>
+
+                <p>
+                    <b>📅 Joined Date:</b>
+                    {{ data['joined_date'] }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</body>
+
+</html>
+
